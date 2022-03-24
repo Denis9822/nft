@@ -1,0 +1,16 @@
+<svg width="377" height="502" viewBox="0 0 377 502" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path id="a" d="M.5.5h375v500H.5z"/>
+    </defs>
+    <g transform="translate(.5 .5)" fill="none" fill-rule="evenodd">
+        <mask id="b" fill="#fff">
+            <use xlink:href="#a"/>
+        </mask>
+        <path fill="#26A9E0" fill-rule="nonzero" mask="url(#b)" d="m97.133 218.864 12.312 18.796 7.452-13.288L107.501 191z"/>
+        <path fill="#00A69C" fill-rule="nonzero" style="mix-blend-mode:multiply" mask="url(#b)" d="m109.424 235.964 1.249-.313 6.224-11.279-6.235-7.37z"/>
+        <path fill="#00F1FF" fill-rule="nonzero" mask="url(#b)" d="m110.093 216.427-12.312 1.605 9.904-26.23z"/>
+        <path stroke="#231F20" stroke-width=".95" stroke-linecap="round" stroke-linejoin="round" mask="url(#b)" d="m97.133 218.864 13.529-1.861 6.235 7.369"/>
+        <path stroke="#231F20" stroke-width=".95" stroke-linecap="round" stroke-linejoin="round" mask="url(#b)" d="m107.501 191-10.368 27.864 12.312 18.796 7.452-13.288z"/>
+        <path stroke="#231F20" stroke-width=".95" stroke-linecap="round" stroke-linejoin="round" mask="url(#b)" d="m109.445 237.66 1.217-20.657-2.977-25.2"/>
+    </g>
+</svg>
