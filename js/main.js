@@ -1,7 +1,7 @@
 $(window).on('load', function() {
 
     window.setTimeout(function() {
-        $('.loading').hide(1000);
+        $('.loading').hide();
     }, 2000);
 })
 
@@ -22,14 +22,42 @@ $(".img").hover(function() {
 
 if ($(window).width() > 768) {
     var h = $(window).width() / 1.587;
+    var mt = $(window).width() / 4.2;
 } else {
+    if ($(window).width() < 430) {
+        var mt = $(window).width() / 1.01;
+    } else {
+        var mt = $(window).width() / 1.8;
+    }
     var h = $(window).width() * 1.40;
-
 }
-console.log($(window).width());
+
 $('.gvdYFP').attr('style', 'height: ' + h + 'px !important');
 $('.box').attr('style', 'height: ' + h + 'px !important');
 $('#cas').attr('style', 'height: ' + h + 'px !important');
+$('.btns').attr('style', 'margin-top: ' + mt + 'px !important');
+
+window.onresize = start;
+
+function start() {
+    if ($(window).width() > 768) {
+        var h = $(window).width() / 1.587;
+        var mt = $(window).width() / 4.2;
+    } else {
+        if ($(window).width() < 430) {
+            var mt = $(window).width() / 1.01;
+        } else {
+            var mt = $(window).width() / 1.8;
+        }
+        var h = $(window).width() * 1.40;
+    }
+
+    $('.gvdYFP').attr('style', 'height: ' + h + 'px !important');
+    $('.box').attr('style', 'height: ' + h + 'px !important');
+    $('#cas').attr('style', 'height: ' + h + 'px !important');
+    $('.btns').attr('style', 'margin-top: ' + mt + 'px !important');
+};
+
 $(document).ready(function() {
     const swiper = new Swiper('.swiper', {
         // Optional parameters
@@ -106,68 +134,27 @@ $(document).ready(function() {
         spaceBetween: 20,
     });
 
-    if ($(window).width() > 768)
-        var url = 'img/canvas_back.png';
-    else
-        var url = 'img/canvas_mob_bg.png';
-
-    var canvas = document.getElementById('cas');
-    var ctx = canvas.getContext('2d');
-    var img = new Image();
-    img.src = url;
-
-
-    img.onload = function() {
-        canvas.width = $(window).width();
-        canvas.height = h;
-        if ($(window).width() > 768)
-            ctx.drawImage(img, 0, 0, $(window).width(), h);
-        else
-            ctx.drawImage(img, 0, 0, $(window).width(), h - 30);
-    };
-
-    var isPress = false;
-    var old = null;
-    canvas.addEventListener('mousedown', function(e) {
-        isPress = true;
-        old = { x: e.offsetX, y: e.offsetY };
-
-        setTimeout(() => {
-                var alpha = 1;
-
-                function clear() {
-                    ctx.clearRect(0, 0, 100 * alpha, 100 * alpha);
-                    alpha += .5;
-                    canvas.globalAlpha = alpha;
-                    setTimeout(clear, 1);
-                }
-
-                clear();
-            },
-            3000);
-    });
-    canvas.addEventListener('mousemove', function(e) {
-        if (isPress) {
-            var x = e.offsetX;
-            var y = e.offsetY;
-            ctx.globalCompositeOperation = 'destination-out';
-
-            ctx.beginPath();
-            ctx.arc(x, y, 50, 0, 2 * Math.PI);
-            ctx.fill();
-
-            ctx.lineWidth = 100;
-            ctx.beginPath();
-            ctx.moveTo(old.x, old.y);
-            ctx.lineTo(x, y);
-            ctx.stroke();
-
-            old = { x: x, y: y };
-
-        }
-    });
-    canvas.addEventListener('mouseup', function(e) {
-        isPress = false;
-    });
-
 })
+
+
+function anim_number() {
+    $('.get-value').each(function(index) {
+        let n = $(this).text().replace(/,/g, '');
+        let el2 = $(this);
+        $({ numberValue: 0 }).animate({ numberValue: n }, {
+            duration: 2000,
+            easing: "linear",
+            step: function(val) {
+                el2.text(Math.round(val).toLocaleString('en-US'));
+            }
+        });
+    })
+}
+var el = $('.YpXIF');
+let anim = true;
+$(window).scroll(function() {
+    if ($(this).scrollTop() > el.offset().top - 1000 && anim == true) {
+        anim = false;
+        anim_number();
+    }
+});
